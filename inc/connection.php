@@ -26,6 +26,18 @@ class connection extends PDO {
     $select->closeCursor();
     return $result;
   }
+  public function insert($table, $data) {
+    $db = self::getConnection();
+    ksort($data);
+    $fn = implode('`, `', array_keys($data));
+    $fv = ':' . implode(', :', array_keys($data));
+    $insert = $db->prepare("INSERT INTO $table (`$fn`) VALUES ($fv)");
+    foreach ($data as $key => $value) {
+      $insert->bindValue(":$key", $value);
+    }
+    $insert->execute();
+    $insert->closeCursor();
+  }
   
 }
 ?>
