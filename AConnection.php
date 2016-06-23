@@ -81,19 +81,19 @@ class connection extends PDO {
 		$db = self::getInstance();
 		ksort($data);
 		$fieldDetails = NULL;
-        foreach($data as $key => $value) {
-            $fieldDetails .= "`$key`=:$key,";
-        }
+        	foreach($data as $key => $value) {
+            		$fieldDetails .= "`$key`=:$key,";
+        	}
 		$fieldDetails = rtrim($fieldDetails, ',');
 		$sth = $db->prepare("UPDATE $table SET $fieldDetails WHERE $where");
 		foreach ($data as $key => $value) {
-            $sth->bindValue(":$key", $value);
-        }
-        foreach ($whereBindArray as $key => $value) {
-            $sth->bindValue(":$key", $value);
-        }
+            		$sth->bindValue(":$key", $value);
+        	}
+	        foreach ($whereBindArray as $key => $value) {
+	            $sth->bindValue(":$key", $value);
+	        }
 		$sth->execute();
-        $sth->closeCursor();
+        	$sth->closeCursor();
 	}
 	/**
 	 * @name: delete
@@ -101,13 +101,13 @@ class connection extends PDO {
 	 * @purpose: Delete a record in a table
 	 */
 	public function delete($table, $where, $bind = array(), $limit = 1) {
-        $db = self::getInstance();
-        $sth = $db->prepare("DELETE FROM $table WHERE $where LIMIT $limit");
-        foreach ($bind as $key => $value) {
-            $sth->bindValue(":$key", $value);
-        }
-        $sth->execute();
-        $sth->closeCursor();
-    }
+        	$db = self::getInstance();
+        	$sth = $db->prepare("DELETE FROM $table WHERE $where LIMIT $limit");
+        	foreach ($bind as $key => $value) {
+            		$sth->bindValue(":$key", $value);
+        	}
+        	$sth->execute();
+        	$sth->closeCursor();
+    	}
 }
 ?>
