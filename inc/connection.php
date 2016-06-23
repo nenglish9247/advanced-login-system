@@ -15,6 +15,17 @@ class connection extends PDO {
     }
     return self::$instance;
   }
+  public function select($sql, $array = array(), $fm = PDO::FETCH_ASSOC) {
+    $db = self::getConnection();
+    $select = $db->prepare($sql);
+    foreach ($array as $key => $value) {
+      $select->bindValue(":$key", $value);
+    }
+    $select->execute();
+    $result = $select->fetchAll($fm);
+    $select->closeCursor();
+    return $result;
+  }
   
 }
 ?>
