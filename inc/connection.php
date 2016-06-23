@@ -9,5 +9,12 @@ class connection extends PDO {
       die('Connection failed: ' . $e->getMessage());
     }
   }
+  public static function getConnection() {
+    if (self::$instance === null) {
+      self::$instance = new self(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
+    }
+    return self::$instance;
+  }
+  
 }
 ?>
