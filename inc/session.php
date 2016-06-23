@@ -7,9 +7,9 @@ class session {
     session_start();
     if (SESSION_REGENERATE_ID) {
       session_regenerate_id(SESSION_REGENERATE_ID);
-		}
-	}
-	public static function stop() {
+    }
+  }
+  public static function stop() {
     $_SESSION = array();
     $params = session_get_cookie_params();
     setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
