@@ -30,7 +30,7 @@ define('ACC_ACT_KEY_LIFE', 10);
 
 define('MAIL_ACT_REQUIRED', true);
 define('REGISTER_CONFIRM_BASE_URL', '/check/k/comfirm');
-define('REGISTER_PASSWORD_RESET_BASE_URL', '/check/k/reset');
+define('REGISTER_PASSWORD_RESET_BASE_URL', '/check/k/forgot');
 
 define('GOOGLE_ENABLED', false);
 define('GOOGLE_ID', '');
